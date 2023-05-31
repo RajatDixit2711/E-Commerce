@@ -86,7 +86,9 @@ public class UserInterFace{
                 loggedInCustomer = login.customerLogin(name, pass);    // check
                 if (loggedInCustomer != null) {
                     messagelabel.setText("welcome " + loggedInCustomer.getName());
+                    messagelabel.setStyle("-fx-background-color:white;");
                     welcomeLable.setText("Welcome " + loggedInCustomer.getName());
+                     welcomeLable.setStyle("-fx-background-color:white;");
                     headerBar.getChildren().add(welcomeLable);
                     body.getChildren().clear();
                     body.getChildren().add(productPage);
@@ -112,13 +114,13 @@ public class UserInterFace{
 
 
      TextField searchBar=new TextField();
-     searchBar .setPromptText("Serach here");
+     searchBar .setPromptText("Search here");
      searchBar.setPrefWidth(280);
 
      Button searchButton = new Button("search");
      signInButton = new Button("sign in");
           welcomeLable=new Label();
-          Button cardButton= new Button(" Card");
+          Button cardButton= new Button(" Cart ");
 
 
 
@@ -138,6 +140,9 @@ public class UserInterFace{
                 body.getChildren().clear();
                 body.getChildren().add(loginPage);
                 headerBar.getChildren().remove(signInButton);
+                //footerBar.getChildren().remove(cardButton);
+//                footerBar.getChildren().remove(bu);
+                   //footerBar.setVisible(false);
 
 
             }
@@ -175,7 +180,9 @@ public class UserInterFace{
                 if(count!=0)
                 {
                     showDialog("Order Place for "+ count+ " products  SuccessFull !!");
-                    itemInCard.clear();///////
+                    ///////
+                    body.getChildren().clear();
+
                     showDialog("Card Is Empty!! ADD some products to card ");
 
 
@@ -205,6 +212,8 @@ public class UserInterFace{
 
 
     }
+
+
     private void createFooterBar()
     {
 
@@ -235,7 +244,7 @@ public class UserInterFace{
                     return ;
                 }
                 boolean status = order.placeOrder(loggedInCustomer,product);
-                if(status== true)
+                if(status == true)
                 {
                     showDialog("Order Place SuccessFull !!");
                 }

@@ -10,6 +10,33 @@ import javafx.scene.layout.VBox;
 
 public class ProductList {
     private TableView <Product> productTable;
+     private TableView <Product> cartTable;
+    public VBox createTableForCart( ObservableList<Product > data)
+    {
+        TableColumn id= new TableColumn("ID");
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+
+        TableColumn name =new TableColumn("NAME");
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+
+        TableColumn price= new TableColumn("Price");
+        price .setCellValueFactory(new PropertyValueFactory<>("price"));
+
+        cartTable = new TableView<>();
+        cartTable.getColumns().addAll(id,name,price);
+       cartTable .setItems(data);
+
+        cartTable .setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+
+
+        VBox vBox= new VBox();
+        vBox.setPadding(new Insets(10));
+
+        vBox.getChildren().addAll(cartTable );
+        return vBox;
+    }
     public VBox createTable( ObservableList<Product > data)
     {
         TableColumn id= new TableColumn("ID");
@@ -53,7 +80,7 @@ public class ProductList {
     }
     public  VBox getProductsInCard(ObservableList<Product> data)
     {
-        return createTable(data);
+        return createTableForCart(data);
     }
 
 }
